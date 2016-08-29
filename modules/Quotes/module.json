@@ -1,0 +1,15 @@
+{
+    "name": "Quotes",
+    "alias": "quotes",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Quotes\\Providers\\QuotesServiceProvider"
+    ],
+    "aliases":{},
+    "files": [
+        "start.php"
+    ]
+}

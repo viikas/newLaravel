@@ -1,0 +1,7 @@
+<?php namespace Modules\Blog\Repository;
+use App\Repository\BaseRepository;
+
+class BlogRepository extends BaseRepository {
+
+    protected $modelName='Blog';
+}

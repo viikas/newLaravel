@@ -1,0 +1,23 @@
+<?php namespace App\Repository;
+use App\Contracts;
+class BaseRepository implements BaseInterface
+{
+	protected $modelName;
+	public function all()
+	{
+		$instance=$this->getNewInstance();
+		return $instance->all();
+	}
+	
+	public function find($id)
+	{
+		$instance=$this->getNewInstance();
+		return $instance->find($id);
+	}
+	
+	protected function getNewInstance()
+	{
+		$model=$this->modelName;
+		return new $model;
+	}
+}

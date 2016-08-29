@@ -1,0 +1,94 @@
+<?php
+
+namespace Modules\Quotes\Repositories;
+use Modules\Quotes\Entities\Template;
+use \Modules\Quotes\Repositories\ProfileAccesoriesInterface;
+use Modules\Quotes\Entities\ProductPriceRevision;
+// use Modules\Quotes\Entities\TemplateSettings;
+use Modules\Quotes\Entities\InventoryAccessories;
+use \Modules\Quotes\Entities\InventorySections;
+use Modules\Quotes\Repositories\Common\Common;
+use DB;
+class ProfileAccessoriesRepo implements ProfileAccessoriesInterface {
+ public function  getProfileAccessory() {
+       
+    //     $data1=InventorySections::get();
+    //    // return $data1;
+    //     $a=array($data1);
+    //     $data2=InventoryAccessories::get();
+    //     $b=array($data2);
+    //    // return $data2;
+    //    // $data3=ProductPriceRevision::get
+    //     $data=array_merge($a,$b);
+    //     return $data;
+    // $data=ProductPriceRevision::with([
+    // 		'profiles.sections' => function($q) {
+    //                     $q->select('id', 'number', 'weight', 'notes');
+    //                 }])
+    //             ->with([
+    //                 'accessories.price' => function($q){
+    //                 $q->where('deleted','=','NULL');
+    //                 $q->select('id','revised_price');
+    //             }])
+    //             ->with([
+    //                 'accessories.details' => function($q) {
+    //                     $q->where('deleted', '=', NULL);
+    //                     $q->select('id', 'code', 'sl_detail');
+    //                 }])
+    // 		->find($profileaccessoryID);
+    // 		return $data;
+
+    //$data=ProductPriceRevision::get();
+   // return $data;
+
+
+// $data=ProductPriceRevision::with('revised_price')
+//                     ->with(['profiles.profilesections'=>function($q){
+//                         $q->select('id','number','weight','notes');
+//                     }])
+//                     ->with(['accessories. accessorydetails'=>function($q){
+
+//                         $q->  $q->where('deleted', '=', NULL);
+//                         $q->select('id', 'code', 'sl_detail');
+//                     }])
+//                     ->find($pricerevisionID);
+//                     return $data;
+
+$data1=ProductPriceRevision::select('revised_price')
+     
+        ->whereNull('product_id')
+         ->whereNull('deleted')
+        ->get();
+     //   return $data;
+ $a=array($data1);
+$data2=InventorySections::select('id','number','weight','notes')->get();
+ $b=array($data2);
+//return $data1; 
+ 
+ //return $data;
+
+ $data3=DB::table('invent_accessory')
+
+          ->leftJoin('quote_product_price_revision','invent_accessory.id','=','quote_product_price_revision.product_id')
+          ->select('invent_accessory.id','code','sl_detail','revised_price')
+          ->get();
+
+           // ->get();
+           // // return $data3;
+           //  foreach ($data3 as $d) {
+           //      $data4=ProductPriceRevision::select('revised_price')->get();
+              
+           //  }
+           
+           //  return $data3;
+           $c=array($data3);
+          // $data=array_merge($a,$b,$c);
+          //  return $data;
+
+
+
+
+
+
+}
+}
